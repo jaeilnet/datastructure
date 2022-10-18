@@ -117,6 +117,10 @@ class SiglyLinkedList {
 
     this.length++;
   }
+
+  remove(index, val) {
+    if (index < 0 || index > this.length) return false;
+  }
 }
 
 // let first = new Node("HI");
