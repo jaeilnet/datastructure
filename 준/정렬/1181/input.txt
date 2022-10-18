@@ -1,0 +1,8 @@
+7
+ababc
+ababb
+cabba
+ababc
+ababc
+ababc
+abaca
