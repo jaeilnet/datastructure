@@ -118,29 +118,68 @@ class SiglyLinkedList {
     this.length++;
   }
 
-  remove(index, val) {
-    if (index < 0 || index > this.length) return false;
+  remove(index) {
+    if (index < 0 || index > this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    let prev = this.get(index - 1);
+    let removed = prev.next;
+    prev.next = removed.next;
+
+    this.length--;
+
+    return removed;
+  }
+  print() {
+    let arr = [];
+    let current = this.head;
+    while (current) {
+      arr.push(current.val);
+      current = current.next;
+    }
+
+    // console.log(arr);
+  }
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+
+    let next = null;
+    let prev = null;
+
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+
+    return this;
   }
 }
 
-// let first = new Node("HI");
-// first.next = new Node("there");
-// first.next.next = new Node("thee");
-
 let list = new SiglyLinkedList();
 
+// console.log(list);
+
+// push
 list.push("Hello");
 list.push("Goodbye");
 list.push("Goodbye2");
 list.push("Goodbye3");
 list.push("Goodbye4");
 
+// pop
 // console.log(list.pop());
 // console.log(list.pop());
 // console.log(list.pop());
 // console.log(list.pop());
 // console.log(list.pop());
 // console.log(list.pop());
+
+// shift
 // console.log(list.shift());
 // console.log(list.shift());
 // console.log(list.shift());
@@ -148,18 +187,26 @@ list.push("Goodbye4");
 // console.log(list.shift());
 // console.log(list.shift());
 
+// unshift
 // console.log(list.unshift("HI"));
 // console.log(list.unshift("NICE"));
 // console.log(list.unshift("NIKE"));
+// console.log(list.unshift("NIKE2"));
+// console.log(list.unshift("NIKE3"));
+
+// get
+// console.log(list.get(2));
+// console.log(list.set(2, "!!!"));
+// console.log(list.get(2));
+// console.log(list.tail);
+
+// remove
+// console.log(list.remove(0));
+// console.log(list.remove(0));
+// console.log(list.remove(0));
+// console.log(list.remove(0));
+// console.log(list.remove(0));
+
+console.log(list.reverse());
+// list.reverse();
 // console.log(list);
-
-console.log(list.get(2));
-console.log(list.set(2, "!!!"));
-console.log(list.get(2));
-console.log(list.tail);
-
-// list.pop();
-// console.log(list, "\n");
-// console.log(list.head.next, "next");
-// console.log(list.traverse());
-// console.log(list.head.next.next, "next");
