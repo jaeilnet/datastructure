@@ -11,4 +11,18 @@ const input = require("fs")
 
 const n = input.shift();
 
-console.log(n, input);
+let answer = [];
+
+for (let i = 0; i < n; i++) {
+  let cnt = 0;
+
+  for (let j = 0; j < input[i].length; j++) {
+    cnt += input[i][j] === "(" ? 1 : -1;
+
+    if (cnt < 0) break;
+  }
+
+  !cnt ? answer.push("YES") : answer.push("NO");
+}
+
+console.log(answer.join("\n"));
